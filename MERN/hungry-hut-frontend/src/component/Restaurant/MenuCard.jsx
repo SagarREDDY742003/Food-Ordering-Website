@@ -21,7 +21,7 @@ const MenuCard = ({ item }) => {
     const reqData = {
       token: localStorage.getItem("jwt"),
       cartItem: {
-        foodId: item.id,
+        foodId: item._id,
         quantity: 1,
         ingredients: selectedIngredients,
       },

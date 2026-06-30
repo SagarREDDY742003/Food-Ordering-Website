@@ -49,7 +49,7 @@ const Cart = () => {
     const data = {
       jwt:localStorage.getItem("jwt"),
       order:{
-        restaurantId:cart.cartItems[0].food?.restaurant.id,
+        restaurantId:cart.cartItems[0].food?.restaurant,
         deliveryAddress:{
           fullName:auth.user?.fullName,
           streetAddress:values.streetAddress,
@@ -60,6 +60,7 @@ const Cart = () => {
         }
       }
     }
+    
     dispatch(createOrder(data));
     handleClose();
   };
@@ -68,7 +69,7 @@ const Cart = () => {
     <>
       <main className="lg:flex justify-between">
         <section className="lg:w-[30%] space-y-6 lg:min-h-screen pt-10">
-          { cart.cartItems.length>0 ? cart.cartItems.map((item) => (
+          { cart.cartItems?.length>0 ? cart.cartItems.map((item) => (
             <CartItem item={item} />
           )):<p className="text-center">No items in cart</p>}
           <Divider />

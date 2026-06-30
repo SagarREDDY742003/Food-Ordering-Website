@@ -40,7 +40,7 @@ const CreateEventForm = () => {
       endsAt: formValues.endsAt?.format("MMMM DD, YYYY hh:mm A"),
     };
     console.log("data", payload);
-    dispatch(createEvent({ data: payload, jwt: localStorage.getItem("jwt"), restaurantId: restaurant?.id }));
+    dispatch(createEvent({ data: payload, jwt: localStorage.getItem("jwt"), restaurantId: restaurant?._id }));
     setFormValues(initialValues);
     handleClose();
   };

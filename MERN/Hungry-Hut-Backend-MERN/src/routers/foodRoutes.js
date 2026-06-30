@@ -10,7 +10,7 @@ foodRouter.post('/admin/food',authenticate,createFoodItem);
 //delete food
 foodRouter.delete('/admin/food/:id',authenticate, deleteFoodItem);
 //update food avaliability status
-foodRouter.put('/admin/food/:id',updateFoodAvailability);
+foodRouter.put('/admin/food/:foodId',updateFoodAvailability);
 
 //customer
 // search food

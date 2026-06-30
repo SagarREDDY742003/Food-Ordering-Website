@@ -12,7 +12,7 @@ const Details = () => {
     console.log(usersRestaurant);
 
   const handleRestaurantStatus = () => {
-    dispatch(updateRestaurantStatus({restaurantId:usersRestaurant.id , jwt:localStorage.getItem("jwt")}));
+    dispatch(updateRestaurantStatus({restaurantId:usersRestaurant._id , jwt:localStorage.getItem("jwt")}));
   };
   return (
     <div className="lg:px-20 px-5">

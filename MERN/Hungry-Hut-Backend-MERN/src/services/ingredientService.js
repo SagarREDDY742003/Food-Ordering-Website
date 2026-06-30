@@ -48,16 +48,16 @@ export async function findRestaurantsIngredients(restaurantId) {
     try {
         const items = await IngredientsItem.find({
             restaurant:restaurantId,
-        });
+        }).populate({path:"category",select:"name"});
         return items;
     } catch (error) {
         throw new Error('Failed to find ingredients for restaurant');
     }
 }
 
-export async function createIngredientItem(restaurantId,ingredientName,IngredientCategoryId) {
+export async function createIngredientItem(restaurantId,ingredientName,categoryId) {
     try {
-        const category = await findIngredientsCategoryById(IngredientCategoryId);
+        const category = await findIngredientsCategoryById(categoryId);
         const restaurant = await findRestaurantById(restaurantId);
         let item = await IngredientsItem.findOne({
             restaurant:restaurantId,
@@ -80,7 +80,7 @@ export async function createIngredientItem(restaurantId,ingredientName,Ingredien
 
 export async function updateIngredientStock(id) {
     try {
-        const item = await IngredientsItem.findById(id);
+        const item = await IngredientsItem.findById(id).populate({path:"category",select:"name"});
         if(!item) throw new Error('ingredient not found');
         item.inStock = !item.inStock;
         await item.save();

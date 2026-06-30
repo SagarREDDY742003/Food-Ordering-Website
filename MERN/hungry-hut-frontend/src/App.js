@@ -17,12 +17,15 @@ function App() {
   const auth = useSelector(store=>store.auth);
 
   useEffect(() => {
+    if(auth.jwt){
     dispatch(getUser(auth.jwt || jwt));
     dispatch(findCart(jwt));
+    }
   },[auth.jwt, dispatch, jwt])
 
   useEffect(()=>{
-    dispatch(getRestaurantByUserId(auth.jwt||jwt));
+    if(auth.jwt)
+      dispatch(getRestaurantByUserId(auth.jwt||jwt));
   },[auth.jwt,dispatch,jwt])
 
   return (

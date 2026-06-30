@@ -27,18 +27,16 @@ export const updateCartItemQuantityController = async(req,res) => {
 } ;
 
 export const removeItemFromCart = async(req,res) => {
-    try {
-        const {id} = req.body;
-        const user = req.user;
-        const cart = await removeCartItemFromCart(id,user);
-        res.status(200).json(cart);
-    } catch (error) {
-        if(error instanceof Error)
-            res.status(400).json({error:error.message});
-        else
-            res.status(500).json({error:"internal server error"});
-    }
-} ;
+  try {
+    const { id } = req.params;
+    const user = req.user;
+    const cart = await removeCartItemFromCart(id, user);
+    res.status(200).json(cart);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
 
 export const findUserCart = async(req,res) => {
     try {

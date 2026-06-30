@@ -61,6 +61,7 @@ export const loginUser = (reqData) => async (dispatch) => {
 };
 
 export const getUser = (jwt) => async (dispatch) => {
+  if(!jwt) return;
   dispatch({ type: GET_USER_REQUEST });
 
   try {

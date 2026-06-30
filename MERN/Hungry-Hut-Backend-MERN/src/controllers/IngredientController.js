@@ -15,8 +15,8 @@ export async function createIngredientCategory(req,res) {
 
 export async function createIngredient(req,res) {
     try {
-        const {restaurantId,name,ingredientCategoryId} = req.body;
-        const item = await createIngredientItem(restaurantId,name,ingredientCategoryId);
+        const {restaurantId,name,categoryId} = req.body;
+        const item = await createIngredientItem(restaurantId,name,categoryId);
         res.status(201).json(item);
     } catch (error) {
         if(error instanceof Error)

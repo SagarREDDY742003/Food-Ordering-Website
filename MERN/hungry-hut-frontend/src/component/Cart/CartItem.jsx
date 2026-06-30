@@ -15,12 +15,12 @@ const CartItem = ({ item }) => {
       handleRemoveCartItem();
       Toast("Item removed successfully !","item-remove");
     }
-    const data = { cartItemId: item.id, quantity: item.quantity + value };
+    const data = { cartItemId: item._id, quantity: item.quantity + value };
     dispatch(updateCartItem({ data, jwt }));
   };
 
   const handleRemoveCartItem = () => {
-    dispatch(removeCartItem({ cartItemId: item.id, jwt: auth.jwt || jwt }));
+    dispatch(removeCartItem({ cartItemId: item._id, jwt: auth.jwt || jwt }));
   };
 
   return (

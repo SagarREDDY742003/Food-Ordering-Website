@@ -21,7 +21,7 @@ const CreateIngredientForm = () => {
     const data = {
       name: FormData.name,
       categoryId:FormData.categoryId,
-      restaurantId:restaurant.id
+      restaurantId:restaurant._id
     };
     dispatch(createIngredient({data:data,jwt:localStorage.getItem("jwt")}));
     
@@ -62,7 +62,7 @@ const CreateIngredientForm = () => {
                 >
                   {
                     ingredientCategories.map((category)=>
-                      <MenuItem key={category.id} value={category.id}>{category.name}</MenuItem>
+                      <MenuItem key={category._id} value={category._id}>{category.name}</MenuItem>
                     )
                   }
                 </Select>

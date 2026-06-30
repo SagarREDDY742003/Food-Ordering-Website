@@ -162,7 +162,7 @@ const RestaurantDetails = () => {
                 >
                   {restaurant.categories?.map((item) => (
                     <FormControlLabel
-                      key={item.id}
+                      key={item._id}
                       value={item.name}
                       control={<Radio />}
                       label={item.name}

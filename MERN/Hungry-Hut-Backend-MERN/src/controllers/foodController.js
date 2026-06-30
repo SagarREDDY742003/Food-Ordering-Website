@@ -34,8 +34,8 @@ export const deleteFoodItem = async (req, res) => {
 
 export const updateFoodAvailability = async (req, res) => {
   try {
-    const { id } = req.params;
-    const menuItem = await updateFoodAvailabilityStatus(id);
+    const { foodId } = req.params;
+    const menuItem = await updateFoodAvailabilityStatus(foodId);
     res.status(200).json(menuItem);
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -47,13 +47,13 @@ export const updateFoodAvailability = async (req, res) => {
 export const getMenuItemsByRestaurantId = async (req, res) => {
   try {
     const { restaurantId } = req.params;
-    const { isVegetarian, isNonVeg, isSeasonable, foodCategory } = req.query;
+    const { vegetarian, nonveg, seasonal, food_category } = req.query;
     const menuItems = await getRestaurantFood(
       restaurantId,
-      isVegetarian,
-      isNonVeg,
-      isSeasonable,
-      foodCategory,
+      vegetarian,
+      nonveg,
+      seasonal,
+      food_category,
     );
     res.status(200).json(menuItems);
   } catch (error) {

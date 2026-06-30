@@ -43,7 +43,7 @@ const menuItemReducer = (state = initialState, action) => {
                 ...state,
                 loading:false,
                 menuItems: state.menuItems.filter(
-                    (menuItem) => menuItem.id !== action.payload
+                    (menuItem) => menuItem._id !== action.payload
                 )
             };
 
@@ -52,7 +52,7 @@ const menuItemReducer = (state = initialState, action) => {
                 ...state,
                 loading:false,
                 menuItems: state.menuItems.map(
-                    (menuItem) => menuItem.id === action.payload.id?action.payload:menuItem
+                    (menuItem) => menuItem._id === action.payload._id?action.payload:menuItem
                 ),
             };
         

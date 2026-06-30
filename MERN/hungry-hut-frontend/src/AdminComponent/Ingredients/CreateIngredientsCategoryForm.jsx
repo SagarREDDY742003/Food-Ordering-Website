@@ -17,7 +17,7 @@ const CreateIngredientsCategoryForm = () => {
     e.preventDefault();
     const data = {
       name:formData.name,
-      restaurantId:restaurant.id
+      restaurantId:restaurant._id
     }
     dispatch(createIngredientCategory({data:data,jwt:jwt}));
   };

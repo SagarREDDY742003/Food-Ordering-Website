@@ -69,7 +69,7 @@ export const getRestaurantById = (reqData) => {
           headers: {
             Authorization: `Bearer ${reqData.jwt}`,
           },
-        }
+        },
       );
       dispatch({ type: GET_RESTAURANT_BY_ID_SUCCESS, payload: response.data });
       console.log("get restaurant by id", response.data);
@@ -80,15 +80,45 @@ export const getRestaurantById = (reqData) => {
   };
 };
 
-export const getRestaurantByUserId = (jwt) => {
-  return async (dispatch) => {
+// export const getRestaurantByUserId = (jwt) => {
+//   return async (dispatch) => {
+//     dispatch({ type: GET_RESTAURANT_BY_USER_ID_REQUEST });
+//     try {
+//       const { data } = await api.get(`/api/admin/restaurant/user`, {
+//         headers: {
+//           Authorization: `Bearer ${jwt}`,
+//         },
+//       });
+//       dispatch({ type: GET_RESTAURANT_BY_USER_ID_SUCCESS, payload: data });
+//       console.log("get restaurant by user id ", data);
+//     } catch (error) {
+//       console.log("get restaurants by user id", error);
+//       dispatch({ type: GET_RESTAURANT_BY_USER_ID_FAILURE, payload: error });
+//     }
+//   };
+// };
+export const getRestaurantByUserId = () => {
+  return async (dispatch, getState) => {
     dispatch({ type: GET_RESTAURANT_BY_USER_ID_REQUEST });
     try {
-      const { data } = await api.get(`/api/admin/restaurant/user`, {
-        headers: {
-          Authorization: `Bearer ${jwt}`,
-        },
+      // Access auth state directly
+      const { auth } = getState();
+      const jwt = auth.jwt;
+      const role = auth.user?.role;
+
+      let url;
+      if (role === "ROLE_ADMIN") {
+        url = "/api/admin/restaurant/user";
+      } else if (role === "ROLE_CUSTOMER") {
+        url = "/api/cart"; // customer route
+      } else {
+        throw new Error("Unsupported role");
+      }
+
+      const { data } = await api.get(url, {
+        headers: { Authorization: `Bearer ${jwt}` },
       });
+
       dispatch({ type: GET_RESTAURANT_BY_USER_ID_SUCCESS, payload: data });
       console.log("get restaurant by user id ", data);
     } catch (error) {
@@ -127,7 +157,7 @@ export const updateRestaurant = ({ restaurantId, restaurantData, jwt }) => {
           headers: {
             Authorization: `Bearer ${jwt}`,
           },
-        }
+        },
       );
       dispatch({
         type: UPDATE_RESTAURANT_SUCCESS,
@@ -151,7 +181,7 @@ export const deleteRestaurant = ({ restaurantId, jwt }) => {
           headers: {
             Authorization: `Bearer ${jwt}`,
           },
-        }
+        },
       );
       console.log("delete restaurant", response.data);
       dispatch({ type: DELETE_RESTAURANT_SUCCESS, payload: restaurantId });
@@ -173,7 +203,7 @@ export const updateRestaurantStatus = ({ restaurantId, jwt }) => {
           headers: {
             Authorization: `Bearer ${jwt}`,
           },
-        }
+        },
       );
       dispatch({
         type: UPDATE_RESTAURANT_STATUS_SUCCESS,
@@ -198,7 +228,7 @@ export const createEvent = ({ data, jwt, restaurantId }) => {
           headers: {
             Authorization: `Bearer ${jwt}`,
           },
-        }
+        },
       );
       dispatch({ type: CREATE_EVENTS_SUCCESS, payload: response.data });
       console.log("create events", response.data);
@@ -208,7 +238,6 @@ export const createEvent = ({ data, jwt, restaurantId }) => {
     }
   };
 };
-
 
 export const getAllEvents = ({ jwt }) => {
   return async (dispatch) => {
@@ -256,7 +285,7 @@ export const getRestaurantEvents = ({ restaurantId, jwt }) => {
           headers: {
             Authorization: `Bearer ${jwt}`,
           },
-        }
+        },
       );
       console.log("get restaurant events", response.data);
       dispatch({
@@ -298,7 +327,7 @@ export const getRestaurantsCategory = ({ jwt, restaurantId }) => {
           headers: {
             Authorization: `Bearer ${jwt}`,
           },
-        }
+        },
       );
       console.log("get restaurant categories", response.data);
       dispatch({

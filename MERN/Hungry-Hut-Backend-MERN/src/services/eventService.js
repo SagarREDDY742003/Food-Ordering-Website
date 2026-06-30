@@ -2,16 +2,16 @@ import Event from "../models/event.model.js";
 import Restaurant from "../models/restaurant.model.js";
 import { findRestaurantById } from "./RestaurantService.js";
 
-export async function createEventOfRestaurant(event,restaurantId) {
+export async function createEventOfRestaurant(data,restaurantId) {
     try {
         const restaurant = await findRestaurantById(restaurantId);
         const newEvent = await Event.create({
             restaurant:restaurantId,
-            imageUrl:event.imageUrl,
-            startedAt:event.startedAt,
-            endsAt:event.endsAt,
-            location:event.location,
-            name:event.name,
+            imageUrl:data.imageUrl,
+            startedAt:data.startedAt,
+            endsAt:data.endsAt,
+            location:data.location,
+            name:data.name,
         });
         restaurant.events.push(newEvent._id);
         await restaurant.save();

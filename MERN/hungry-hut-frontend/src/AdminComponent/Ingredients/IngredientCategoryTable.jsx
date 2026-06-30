@@ -32,7 +32,7 @@ const IngredientCategoryTable = () => {
   const ingredientCategories =useSelector(store=>store.ingredients.categories);
 
   useEffect(()=>{
-    dispatch(getIngredientCategory({id:restaurant.id,jwt:localStorage.getItem("jwt")}))
+    dispatch(getIngredientCategory({id:restaurant._id,jwt:localStorage.getItem("jwt")}))
   },[dispatch,restaurant])
 
   return (
@@ -51,7 +51,7 @@ const IngredientCategoryTable = () => {
           <Table aria-label="simple table">
             <TableHead>
               <TableRow>
-                <TableCell align="left">Id</TableCell>
+                {/* <TableCell align="left">Id</TableCell> */}
                 <TableCell align="left">Name</TableCell>
               </TableRow>
             </TableHead>
@@ -61,7 +61,7 @@ const IngredientCategoryTable = () => {
                   key={item.name}
                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                 >
-                  <TableCell align="left">{item.id}</TableCell>
+                  {/* <TableCell align="left">{item._id}</TableCell> */}
                   <TableCell align="left">{item.name}</TableCell>
                 </TableRow>
               ))}

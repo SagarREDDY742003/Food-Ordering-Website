@@ -29,7 +29,7 @@ const restaurantOrderReducer = (state=initialState,action) => {
                 ...state,
                 loading:false,
                 orders: state.orders.map((order) => 
-                    order.id === action.payload.id?action.payload:order
+                    order._id === action.payload._id?action.payload:order
                 )
             };
         

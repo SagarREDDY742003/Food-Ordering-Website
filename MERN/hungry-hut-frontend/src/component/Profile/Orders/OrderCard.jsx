@@ -2,6 +2,7 @@ import { Button, Card } from "@mui/material";
 
 
 const OrderCard = ({ order }) => {
+  
   return (
     <div className="mx-2 p-4 flex bg-slate-800 flex-col gap-2 items-center w-[20rem]">
       {order.items.map((item) => (
@@ -30,7 +31,7 @@ const OrderCard = ({ order }) => {
       <div className="flex w-full items-baseline justify-evenly">
         <p>
           <span className="text-gray-400">{"Total price: ₹"}</span>
-          {order.totalPrice}
+          {order.totalAmount}
         </p>
         <Button className="cursor-not-allowed">{order.orderStatus}</Button>
       </div>

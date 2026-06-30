@@ -15,6 +15,6 @@ eventRoutes.delete('/admin/events/:eventId',authenticate,deleteEvent);
 
 // customer
 // get All Events
-eventRoutes.delete('/events',getAllEvents);
+eventRoutes.get('/events',getAllEvents);
 
 export default eventRoutes;

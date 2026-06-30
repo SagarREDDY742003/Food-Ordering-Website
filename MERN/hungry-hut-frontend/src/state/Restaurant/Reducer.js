@@ -65,10 +65,10 @@ const restaurantReducer = (state=initialState,action) => {
                 error:null,
                 loading:false,
                 restaurants: state.restaurants.filter(
-                    (item) => item.id !== action.payload
+                    (item) => item._id !== action.payload
                 ),
                 usersRestaurant: state.usersRestaurant.filter(
-                    (item) => item.id !== action.payload
+                    (item) => item._id !== action.payload
                 ),
             };
 
@@ -100,10 +100,10 @@ const restaurantReducer = (state=initialState,action) => {
                 ...state,
                 loading:false,
                 events: state.events.filter(
-                    (item) => item.id !== action.payload
+                    (item) => item._id !== action.payload
                 ),
                 restaurantEvents: state.restaurantEvents.filter(
-                    (item) => item.id !== action.payload
+                    (item) => item._id !== action.payload
                 ),
             };
 

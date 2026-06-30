@@ -17,9 +17,7 @@ const CreateFoodCategoryForm = () => {
     e.preventDefault();
     const data = {
       name: formData.categoryName,
-      restaurantId: {
-        id: restaurant.id
-      },
+      restaurantId:restaurant._id
     };
     dispatch(createCategory({data:data,jwt:localStorage.getItem("jwt")}));
   };

@@ -34,7 +34,7 @@ const EventCard = ({accessButton,event}) => {
         </CardContent>
         {accessButton && 
             <CardActions>
-                <IconButton onClick={()=>handleDelete(event.id)}>
+                <IconButton onClick={()=>handleDelete(event._id)}>
                     <DeleteIcon color="error" />
                 </IconButton>
             </CardActions>

@@ -8,13 +8,13 @@ const orderRoutes = Router();
 // create order
 orderRoutes.post('/order',authenticate,createOrderController);
 // get user orders
-orderRoutes.post('/order/user',authenticate,getUserOrdersController);
+orderRoutes.get('/order/user',authenticate,getUserOrdersController);
 
 // admin
 // get restaurant Orders
-orderRoutes.post('/admin/order/restaurant/:restaurantId',authenticate,getAllRestaurantOrdersController);
+orderRoutes.get('/admin/order/restaurant/:restaurantId',authenticate,getAllRestaurantOrdersController);
 // delete order
 orderRoutes.delete('/admin/order/:orderId',authenticate,deleteOrder);
 //update Order Status
-orderRoutes.post('/admin/order/:orderId/:orderStatus',authenticate,updateOrderStatusController);
+orderRoutes.put('/admin/order/:orderId/:orderStatus',authenticate,updateOrderStatusController);
 export default orderRoutes;

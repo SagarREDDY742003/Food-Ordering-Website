@@ -11,8 +11,8 @@ const Events = () => {
   const events = useSelector((state) => state.restaurant.restaurantEvents);
   const restaurant = useSelector((state) => state.restaurant.usersRestaurant);
   useEffect(() => {
-    dispatch(getRestaurantEvents({ restaurantId: restaurant.id, jwt: localStorage.getItem("jwt") }));
-  }, [dispatch, restaurant.id]);
+    dispatch(getRestaurantEvents({ restaurantId: restaurant._id, jwt: localStorage.getItem("jwt") }));
+  }, [dispatch, restaurant._id]);
 
   return (
     <div>

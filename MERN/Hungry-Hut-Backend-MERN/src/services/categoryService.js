@@ -9,8 +9,8 @@ export async function createCategory(name, userId) {
       name,
       restaurant: restaurant._id,
     });
-    await createCategory.save();
-    return createCategory;
+    await createdCategory.save();
+    return createdCategory;
   } catch (error) {
     throw new Error("Failed to create category");
   }

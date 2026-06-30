@@ -32,7 +32,7 @@ const MenuTable = () => {
   useEffect(() => {
     dispatch(
       getMenuItemsByRestaurantId({
-        restaurantId: usersRestaurant?.id,
+        restaurantId: usersRestaurant?._id,
         jwt: jwt,
       })
     );
@@ -76,7 +76,7 @@ const MenuTable = () => {
             <TableBody>
               {menu.map((menuItem) => (
                 <TableRow
-                  key={menuItem.id}
+                  key={menuItem._id}
                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                 >
                   <TableCell align="center">
@@ -94,12 +94,12 @@ const MenuTable = () => {
                     {"₹ " + menuItem.price + " /-"}
                   </TableCell>
                   <TableCell align="center">
-                    <Button onClick={()=>handleMenuAvaliability(menuItem.id)} variant="contained" color={menuItem.available ? "success" : "warning"}>
+                    <Button onClick={()=>handleMenuAvaliability(menuItem._id)} variant="contained" color={menuItem.available ? "success" : "warning"}>
                       {menuItem.available ? "Avaliable" : "Not Avaliable"}
                     </Button>
                   </TableCell>
                   <TableCell align="center">
-                    <IconButton onClick={()=>handleMenuDeletion(menuItem.id)}>
+                    <IconButton onClick={()=>handleMenuDeletion(menuItem._id)}>
                       <Delete className="text-red-600" />
                     </IconButton>
                   </TableCell>

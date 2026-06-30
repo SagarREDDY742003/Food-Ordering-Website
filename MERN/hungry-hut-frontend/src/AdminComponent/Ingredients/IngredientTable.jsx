@@ -51,7 +51,7 @@ const IngredientTable = () => {
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
             <TableHead>
               <TableRow>
-                <TableCell align="right">Id</TableCell>
+                {/* <TableCell align="right">Id</TableCell> */}
                 <TableCell align="right">Name</TableCell>
                 <TableCell align="right">Category</TableCell>
                 <TableCell align="right">Avaliability</TableCell>
@@ -63,10 +63,10 @@ const IngredientTable = () => {
                   key={item.name}
                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                 >
-                  <TableCell align="right">{item.id}</TableCell>
+                  {/* <TableCell align="right">{item._id}</TableCell> */}
                   <TableCell align="right">{item.name}</TableCell>
                   <TableCell align="right">{item.category.name}</TableCell>
-                  <TableCell align="right"><Button onClick={()=>handleStock(item.id)} variant="outlined" color={item.inStock?"success":"warning"} >{item.inStock?"IN STOCK":"OUT OF STOCK"}</Button></TableCell>
+                  <TableCell align="right"><Button onClick={()=>handleStock(item._id)} variant="outlined" color={item.inStock?"success":"warning"} >{item.inStock?"IN STOCK":"OUT OF STOCK"}</Button></TableCell>
                 </TableRow>
               ))}
             </TableBody>

@@ -46,7 +46,7 @@ const FoodCategoryTable = () => {
           <Table sx={{ minWidth: 330 }} aria-label="simple table">
             <TableHead>
               <TableRow>
-                <TableCell align="left">Id</TableCell>
+                {/* <TableCell align="left">Id</TableCell> */}
                 <TableCell align="left">Name</TableCell>
               </TableRow>
             </TableHead>
@@ -56,7 +56,7 @@ const FoodCategoryTable = () => {
                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                   key={index}
                 >
-                  <TableCell align="left">{item.id}</TableCell>
+                  {/* <TableCell align="left">{item._id}</TableCell> */}
                   <TableCell align="left">{item.name}</TableCell>
                 </TableRow>
               ))}

@@ -46,7 +46,7 @@ const CreateMenuForm = () => {
   const formik = useFormik({
     initialValues,
     onSubmit: (values) => {
-      values.restaurantId = restaurant.id;
+      values.restaurantId = restaurant._id;
       dispatch(createMenuItem({menu:values,jwt:localStorage.getItem("jwt")}));
       navigate("/admin/restaurant/menu");
     },
@@ -178,7 +178,7 @@ const CreateMenuForm = () => {
                   input={<OutlinedInput label="ingredients" />}
                   renderValue={(selected) => (
                     <Box sx={{display:"flex",flexWrap:"wrap",gap:0.5}}>
-                      {selected.map((value)=>(<Chip key={value.id} label={value.name}/>))}
+                      {selected.map((value)=>(<Chip key={value._id} label={value.name}/>))}
                     </Box>
                   )}
                 >

@@ -31,12 +31,12 @@ const Admin = () => {
 
   useEffect(() => {
     dispatch(
-      getRestaurantsCategory({ jwt: jwt, restaurantId: usersRestaurant?.id })
+      getRestaurantsCategory({ jwt: jwt, restaurantId: usersRestaurant?._id })
     );
     dispatch(
-      getRestaurantsOrder({ jwt: jwt, restaurantId: usersRestaurant?.id })
+      getRestaurantsOrder({ jwt: jwt, restaurantId: usersRestaurant?._id })
     );
-    dispatch(getIngredientsOfRestaurant({ id: usersRestaurant?.id, jwt: jwt }));
+    dispatch(getIngredientsOfRestaurant({ id: usersRestaurant?._id, jwt: jwt }));
   }, [usersRestaurant, jwt, dispatch]);
 
   return (

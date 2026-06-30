@@ -13,6 +13,6 @@ cartRoutes.delete('/cart-item/:id/remove',authenticate,removeItemFromCart);
 // clear Cart
 cartRoutes.put('/cart/clear',authenticate,clearCartController);
 // find User Cart
-cartRoutes.put('/cart',authenticate,findUserCart);
+cartRoutes.get('/cart',authenticate,findUserCart);
 
 export default cartRoutes;

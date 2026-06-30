@@ -3,9 +3,9 @@ import { findAllEvents, findRestaurantEvents, createEventOfRestaurant, deleteRes
 
 export async function createEvent(req, res) {
   try {
-    const { event } = req.body;
+    // const { data } = req.body;
     const { restaurantId } = req.params;
-    const createdEvent = await createEventOfRestaurant(event, restaurantId);
+    const createdEvent = await createEventOfRestaurant(req.body, restaurantId);
     res.status(201).json(createdEvent);
   } catch (error) {
     if (error instanceof Error) res.status(400).json({ error: error.message });

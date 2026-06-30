@@ -14,13 +14,13 @@ const RestaurantCard = ({ item }) => {
   const { auth } = useSelector((store) => store);
 
   const handleAddToFavorite = () => {
-    dispatch(addToFavourite(jwt, item.id));
+    dispatch(addToFavourite(jwt, item._id));
     isPresentInFavorites(auth.favorites, item)? Toast("Removd from favorites","remove-fav"):Toast("Added to favorite","add-fav")
   };
 
   const handleNavigateToRestaurant = () => {
     if (item.open) {
-      navigate(`/restaurant/${item.address?.city}/${item.name}/${item.id}`);
+      navigate(`/restaurant/${item.address?.city}/${item.name}/${item._id}`);
     }
   };
 
@@ -31,8 +31,8 @@ const RestaurantCard = ({ item }) => {
         onClick={handleNavigateToRestaurant}
       >
         <img
-          src={item.images[1]}
-          alt="restaurant"
+          src={item?.images?.[0]} 
+          alt={item?.name || "Restaurant"}
           className="w-full h-[10rem] object-cover rounded-t-md"
         />
 

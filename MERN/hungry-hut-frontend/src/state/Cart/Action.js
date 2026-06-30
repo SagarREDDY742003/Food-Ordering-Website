@@ -23,6 +23,7 @@ import {
 
 export const findCart = (token) => {
   return async (dispatch) => {
+    if(!token) return;
     dispatch({ type: FIND_CART_REQUEST });
     try {
       const response = await api.get("api/cart", {
@@ -105,7 +106,7 @@ export const removeCartItem = ({ cartItemId, jwt }) => {
         },
       });
       console.log("removeCartItem", data);
-      dispatch({ type: REMOVE_CART_ITEM_SUCCESS, payload: cartItemId });
+      dispatch({ type: REMOVE_CART_ITEM_SUCCESS, payload: data  });
     } catch (error) {
       console.log("error", error);
       dispatch({ type: REMOVE_CART_ITEM_FAILURE, payload: error.message });

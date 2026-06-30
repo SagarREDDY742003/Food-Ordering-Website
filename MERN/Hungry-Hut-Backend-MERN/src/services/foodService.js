@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import Food from "../models/food.model.js";
 import Restaurant from "../models/restaurant.model.js";
+import Category from "../models/category.model.js";
 
 export const createFood = async (req, restaurant) => {  
   const session = await mongoose.startSession();
@@ -13,8 +14,8 @@ export const createFood = async (req, restaurant) => {
       foodCategory: req.category,
       images: req.images,
       restaurant: restaurant._id,
-      isVegetarian: req.isVegetarian,
-      isSeasonable: req.isSeasonable,
+      isVegetarian: req.vegetarian,
+      isSeasonable: req.seasonal,
       ingredients: req.ingredients,
       creationDate: new Date(),
     }],{session});
@@ -56,17 +57,21 @@ export const deleteFood = async (foodId) => {
 
 export const getRestaurantFood = async (
   restaurantId,
-  isVegetarian,
-  isNonVeg,
-  isSeasonable,
-  foodCategory,
+  vegetarian,
+  nonveg,
+  seasonal,
+  food_category,
 ) => {
   try {
     let query = {restaurant: restaurantId};
-    if(isVegetarian=="true") query.isVegetarian=true;
-    if(isNonVeg=="true") query.isVegetarian=false;
-    if(isSeasonable=="true") query.isSeasonable=true;
-    if(foodCategory) query.foodCategory=foodCategory;
+    if(vegetarian=="true") query.isVegetarian=true;
+    if(nonveg=="true") query.isVegetarian=false;
+    if(seasonal=="true") query.isSeasonable=true;
+    if (food_category) {
+      const category = await Category.findOne({ name: food_category });
+      if (!category) throw new Error("Category not found");
+      query.foodCategory = category._id;
+    }
 
     const foods = await Food.find(query).populate([
         {path: "ingredients",populate:{path:"category",select:"name"}},
@@ -103,7 +108,7 @@ export const searchFood = async(keyword) =>{
 //   } catch (error) {
 //     throw new Error(error.message);
 //   }
-// };
+// }
 
 export const updateFoodAvailabilityStatus = async (foodId) => {
   try {
